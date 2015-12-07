@@ -1,0 +1,45 @@
+<apex:page standardController="Account" extensions="JsTemplateDemoController" showHeader="true" sidebar="false" id="page">
+    
+    <apex:includeScript value="https://code.jquery.com/jquery-2.1.4.min.js" />
+    <apex:includeScript value="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" />
+    <apex:include pageName="JsTemplateDemoCss" />
+    
+    <div id="vf-page">
+        <apex:form id="form">
+            <apex:pageMessages id="msg" />
+            <apex:inputHidden value="{!account.Id}" id="accountId" />
+            <apex:pageBlock mode="edit" id="block">
+                <apex:pageBlockButtons location="bottom" id="buttons">
+                    <apex:commandButton value=" Save " action="{!Save}" reRender="form" />
+                    <apex:commandButton value=" Cancel " action="{!Cancel}" reRender="form" />
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection title="Info" id="section">
+                    <apex:outputField value="{!account.Name}" id="accName" />
+                    <apex:outputField value="{!account.AccountNumber}" id="accNumber" />
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+            <apex:pageBlock mode="edit" id="contactBlock">
+                <apex:pageBlockSection columns="1" id="contactSection">
+                    <apex:outputPanel >
+                        <table cellpadding="0" cellspacing="0" class="contactTable">
+                            <colgroup>
+                                <col width="600" />
+                                <col />
+                            </colgroup>
+                            <thead>
+                                <th>
+                                    <apex:outputText value="{!$ObjectType.Contact.Fields.LastName.Label}" />
+                                </th>
+                                <th>
+                                    <apex:outputText value="{!$ObjectType.Contact.Fields.FirstName.Label}" />
+                                </th>
+                            </thead>
+                            <tbody id="contactTableBody"></tbody>
+                        </table>
+                    </apex:outputPanel>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:form>
+    </div>
+    <apex:include pageName="JsTemplateDemoScript" />
+</apex:page>

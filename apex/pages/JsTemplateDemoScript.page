@@ -1,0 +1,47 @@
+<apex:page >
+    <script type="text/javascript">
+        (function($){            
+            // 取引先に紐付く取引先責任者情報を取得
+            function init() {
+                // 取引先IDを取得
+                var accountEl = document.getElementById('{!$Component.form.accountId}');
+                var accountId = accountEl.value;
+                
+                JsTemplateDemoController.getContacts(accountId, function(results, event){
+                    if(event.status) {
+                        $("#contactTableBody").html(_.map(results, outerDefinition).join());
+                    }
+                    return false;
+                });
+            }
+            
+            // テンプレート外部定義
+            function outerDefinition(resultContact) {
+              // テンプレートを取得
+              var template = $("#contact-table-template").html();
+              // テンプレートを定義
+              var compiled = _.template(template);
+              // バインドするオブジェクト定義
+              var contact = {
+                   "firstName": resultContact.FirstName
+                  ,"lastName": resultContact.LastName
+              };
+              return compiled(contact);
+            }
+            
+            // 初期処理
+            init();
+        })(jQuery);
+    </script>
+    <!-- 取引先責任者テーブルテンプレート -->
+    <script type="text/template" id="contact-table-template">
+        <tr>
+            <td>
+                <%= lastName %>
+            </td>
+            <td>
+                <%= firstName %>
+            </td>
+        </tr>
+    </script>
+</apex:page>

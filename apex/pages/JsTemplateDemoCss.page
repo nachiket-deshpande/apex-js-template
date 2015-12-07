@@ -1,0 +1,25 @@
+<apex:page >
+    <style type="text/css">
+        #vf-page * {
+            font-family: "ProximaNovaSoft-Regular", Calibri, 
+                "Gill Sans", "Gill Sans MT", Candara, Segoe, "Segoe UI", 
+                 Arial, sans-serif;
+        }
+
+        #vf-page .contactTable {
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        #vf-page table.contactTable th,
+        #vf-page table.contactTable td {
+            border-bottom: 1px solid #4a4a56;
+            padding: 5px;
+            color: #4a4a56;
+        }
+
+        #vf-page table.contactTable tr:hover td {
+            font-weight: bold;
+        }
+    </style>
+</apex:page>
